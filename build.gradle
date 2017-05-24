@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.11'
+}
+
+task runMain(type: JavaExec) {
+  // mainClass = "Main"
+  main = "Main"
+  classpath = sourceSets.main.runtimeClasspath
+}
