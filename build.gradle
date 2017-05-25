@@ -5,15 +5,32 @@ repositories {
 }
 
 dependencies {
-
+  testCompile 'junit:junit:4.12'
+  compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+  compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.23.0'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.11'
 }
 
-task runMain(type: JavaExec) {
+task start(type: JavaExec) {
   // mainClass = "Main"
   main = "Main"
   classpath = sourceSets.main.runtimeClasspath
 }
+//
+// sourceSets {
+//   test {
+//     java {
+//       srcDirs = ["main/test"]
+//     }
+//   }
+// }
+
+// test.doFirst {
+//   systemProperty "webdriver.chrome.driver",
+//     classpath.find {
+//       it.name.contains("selenium-chrome-driver")
+//     }.path
+// }
