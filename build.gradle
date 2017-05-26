@@ -6,8 +6,14 @@ repositories {
 
 dependencies {
   testCompile 'junit:junit:4.12'
-  compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
-  compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.23.0'
+  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+  compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
+  //
+  // // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver
+  //  compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.23.1'
+  //
+  // // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver
+  // compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.25.0'
 }
 
 task wrapper(type: Wrapper) {
@@ -19,6 +25,26 @@ task start(type: JavaExec) {
   main = "Main"
   classpath = sourceSets.main.runtimeClasspath
 }
+
+def getProjectPropertyOrDefaultValue(String projectPropertyName, Object defaultValue) {
+  if (project.hasProperty(projectPropertyName)) {
+    return project.getProperties()[projectPropertyName]
+  } else {
+    return defaultValue
+  }
+}
+
+test {
+  doFirst {
+    systemProperty "baseUrl", getProjectPropertyOrDefaultValue("url", "http://localhost:8080/")
+    //println project.baseUrl
+  }
+}
+
+task chrome {
+  println project.name
+}
+
 //
 // sourceSets {
 //   test {
@@ -29,8 +55,8 @@ task start(type: JavaExec) {
 // }
 
 // test.doFirst {
-//   systemProperty "webdriver.chrome.driver",
+//   systemProperty "webdriver.gecko.driver",
 //     classpath.find {
-//       it.name.contains("selenium-chrome-driver")
+//       it.name.contains("selenium-firefox-driver")
 //     }.path
 // }
