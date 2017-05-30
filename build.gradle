@@ -1,21 +1,29 @@
 apply plugin: 'java'
 
 import org.apache.tools.ant.taskdefs.condition.Os
-task checkWin {
-    doLast {
-
-    }
-
-}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    def gradleVersion = getProjectPropertyOrDefaultValue('gradleVersion', '3.4.0')
+    def junitVersion = getProjectPropertyOrDefaultValue('junitVersion', '4.12')
+
+    if (JavaVersion.current() == 1.8) {
+        gradleVersion = '3.4.0'
+    } else if (JavaVersion.current() == 1.7) {
+        gradleVersion = '2.53.1'
+    } else if (JavaVersion.current() == 1.6) {
+        // Find a version that works with 1.6 but not a priority
+        gradleVersion = ''
+    } else {
+        // Think about something to do for this
+    }
+
+    testCompile 'junit:junit:' + junitVersion
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: gradleVersion
     //
     // // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver
     //  compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.23.1'
@@ -56,7 +64,7 @@ test {
 }
 
 task chrome {
-    println project.name
+    // println "This version " + JavaVersion.current()
 }
 
 //
