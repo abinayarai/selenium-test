@@ -1,5 +1,13 @@
 apply plugin: 'java'
 
+import org.apache.tools.ant.taskdefs.condition.Os
+task checkWin {
+    doLast {
+
+    }
+
+}
+
 repositories {
     mavenCentral()
 }
@@ -35,10 +43,16 @@ def getProjectPropertyOrDefaultValue(String projectPropertyName, Object defaultV
 }
 
 test {
-  doFirst {
-    systemProperty "baseUrl", getProjectPropertyOrDefaultValue("url", "http://localhost:8080/")
-    //println project.baseUrl
-  }
+    doFirst {
+        systemProperty "baseUrl", getProjectPropertyOrDefaultValue("url", "http://localhost:8080/")
+        //println project.baseUrl
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            systemProperty "driverName", "src/resources/drivers/chromedriver.exe"
+        }
+        else {
+            systemProperty "driverName", "src/resources/drivers/chromedriver"
+        }
+    }
 }
 
 task chrome {

@@ -10,37 +10,37 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.By;
 
 public class DbMonitorTest {
-  public static WebDriver driver = null;
+    public static WebDriver driver = null;
 
-  public DbMonitorTest() {
-    System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver");
-    driver = new ChromeDriver();
-  }
+    public DbMonitorTest() {
+        System.setProperty("webdriver.chrome.driver", System.getProperty("driverName"));
+        driver = new ChromeDriver();
+    }
 
-  @Test
-  public void testAdd() {
-    // WebDriver driver = new ChromeDriver();
-    // WebDriver driver = new FirefoxDriver();
-    String baseUrl = System.getProperty("baseUrl");
-    // driver.get("http://localhost:8080");
+    @Test
+    public void testAdd() {
+        // WebDriver driver = new ChromeDriver();
+        // WebDriver driver = new FirefoxDriver();
+        String baseUrl = System.getProperty("baseUrl");
+        // driver.get("http://localhost:8080");
 
-    // WebDriver driver = new ChromeDriver();
-    //driver.get(baseUrl);
+        // WebDriver driver = new ChromeDriver();
+        //driver.get(baseUrl);
 
-    //WebElement clusterTitle = DbMonitorPage.getClusterTitle(driver);
-    driver.get("http://wwww.seleniumhq.com");
+        //WebElement clusterTitle = DbMonitorPage.getClusterTitle(driver);
+        driver.get("http://wwww.seleniumhq.com");
 
-    WebElement element = driver.findElement(By.id("mainContent"));
+        WebElement element = driver.findElement(By.id("mainContent"));
 
-    // System.out.println(element.getText());
-    // String str = "Junit is working fine";
-    // assertEquals("Junit is working fine",str);
-    // System.out.println("Hello, test!");
+        // System.out.println(element.getText());
+        // String str = "Junit is working fine";
+        // assertEquals("Junit is working fine",str);
+        // System.out.println("Hello, test!");
 
-  }
+    }
 
-  @After
-  public void after() {
+    @After
+    public void after() {
     driver.quit();
   }
 }
