@@ -9,7 +9,9 @@ public class DbMonitorTest {
     public static WebDriver driver = null;
 
     public DbMonitorTest() {
-        System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver");
+
+        System.setProperty("webdriver.chrome.driver", System.getProperty("driverName"));
+
         driver = new ChromeDriver();
     }
 
