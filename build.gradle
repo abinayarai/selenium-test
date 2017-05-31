@@ -51,6 +51,7 @@ def getProjectPropertyOrDefaultValue(String projectPropertyName, Object defaultV
 }
 
 test {
+    dependsOn 'clearScreenshots'
     doFirst {
         systemProperty "baseUrl", getProjectPropertyOrDefaultValue("url", "http://localhost:8080/")
         //println project.baseUrl
@@ -65,6 +66,10 @@ test {
 
 task chrome {
     // println "This version " + JavaVersion.current()
+}
+
+task clearScreenshots(type: Delete) {
+    delete 'screenshots'
 }
 
 //

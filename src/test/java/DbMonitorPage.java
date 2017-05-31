@@ -8,7 +8,7 @@ public class DbMonitorPage {
     public static String dbMonitorLinkText = "DB Monitor";
 
     public static WebElement getDbMonitorLink(WebDriver driver) {
-        WebElement element = driver.findElement(By.xpath("//*[@id='navDbmonitor']/a"));
+        element = driver.findElement(By.xpath("//*[@id='navDbmonitor']/a"));
         return element;
     }
 }
