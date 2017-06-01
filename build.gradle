@@ -7,14 +7,14 @@ repositories {
 }
 
 dependencies {
-    def gradleVersion = getProjectPropertyOrDefaultValue('gradleVersion', '3.4.0')
+    def gradleVersion
     def junitVersion = getProjectPropertyOrDefaultValue('junitVersion', '4.12')
 
-    if (JavaVersion.current() == 1.8) {
-        gradleVersion = '3.4.0'
-    } else if (JavaVersion.current() == 1.7) {
-        gradleVersion = '2.53.1'
-    } else if (JavaVersion.current() == 1.6) {
+    if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
+        gradleVersion = getProjectPropertyOrDefaultValue('gradleVersion', '3.4.0')
+    } else if (JavaVersion.current() == JavaVersion.VERSION_1_7) {
+        gradleVersion = getProjectPropertyOrDefaultValue('gradleVersion', '2.53.1')
+    } else if (JavaVersion.current() == JavaVersion.VERSION_1_6) {
         // Find a version that works with 1.6 but not a priority
         gradleVersion = ''
     } else {
